@@ -18,7 +18,7 @@ class LoginActivity : AppCompatActivity() {
 
         //로그인 버튼 클릭 시 지도 화면 전환
         login_btn.setOnClickListener{
-            val intent = Intent(this, MapActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
     }
