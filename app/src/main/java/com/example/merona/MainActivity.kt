@@ -1,15 +1,19 @@
 package com.example.merona
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Looper
 import android.util.Log
+import android.view.View
 import androidx.annotation.UiThread
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.view.isInvisible
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.example.merona.databinding.ActivityMainBinding
@@ -21,6 +25,11 @@ import com.naver.maps.map.MapFragment
 import com.naver.maps.map.NaverMap
 import com.naver.maps.map.OnMapReadyCallback
 import com.naver.maps.map.overlay.Marker
+import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.btn_addBoard
+import kotlinx.android.synthetic.main.activity_map.*
+import kotlinx.android.synthetic.main.activity_register.*
 
 private const val TAG_HOME = "home_fragment"
 private const val TAG_LIST = "list_fragment"
@@ -38,6 +47,13 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        //btn_addBoard 버튼 클릭 시 게시글 추가 화면 라우팅
+        btn_addBoard.setOnClickListener{
+            val intent = Intent(this, WritingActivity::class.java)
+            startActivity(intent)
+        }
+
+        //bottom bar 설정
         setFragment(TAG_HOME, HomeFragment())
 
         binding.bottomNavigationview.setOnItemSelectedListener { item ->
@@ -49,8 +65,6 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
             }
             true
         }
-
-
     }
 
     private fun setFragment(tag: String, fragment: Fragment) {
@@ -67,6 +81,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
         val user = manager.findFragmentByTag(TAG_USER)
 
         if(home != null) {
+            btn_addBoard.visibility = View.INVISIBLE
             fragTransaction.hide(home)
         }
 
@@ -85,6 +100,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
         if(tag == TAG_HOME) {
             if(home != null) {
                 if(isPermitted()) {
+                    btn_addBoard.visibility = View.VISIBLE
                     fragTransaction.show(home)
                 } else {
                     ActivityCompat.requestPermissions(this, permissions, permission_request)
@@ -94,16 +110,19 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
         }
         else if(tag == TAG_LIST) {
             if(list != null) {
+                btn_addBoard.visibility = View.INVISIBLE
                 fragTransaction.show(list)
             }
         }
         else if(tag == TAG_MESSAGE) {
             if(message != null) {
+                btn_addBoard.visibility = View.INVISIBLE
                 fragTransaction.show(message)
             }
         }
         else if(tag == TAG_USER) {
             if(user != null) {
+                btn_addBoard.visibility = View.INVISIBLE
                 fragTransaction.show(user)
             }
         }
