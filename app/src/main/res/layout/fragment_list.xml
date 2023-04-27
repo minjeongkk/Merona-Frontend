@@ -9,6 +9,9 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="hello_list_fragment" />
+        android:text="심부름 목록"
+        android:textSize="20dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center_horizontal"/>
 
 </FrameLayout>

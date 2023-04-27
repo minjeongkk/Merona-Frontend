@@ -1,10 +1,15 @@
 package com.example.merona
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.AppCompatButton
+import kotlinx.android.synthetic.main.activity_register.*
+import kotlinx.android.synthetic.main.activity_writing.*
+import kotlinx.android.synthetic.main.fragment_user.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -27,14 +32,23 @@ class UserFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_user, container, false)
+        val view = inflater.inflate(R.layout.fragment_user, container, false)
+
+        val modifyButton : AppCompatButton = view.findViewById(R.id.btn_modify)
+        modifyButton.setOnClickListener {
+            val intent = Intent(getActivity(), ModifyActivity::class.java)
+            startActivity(intent)
+        }
+
+        return view
+
     }
 
     companion object {

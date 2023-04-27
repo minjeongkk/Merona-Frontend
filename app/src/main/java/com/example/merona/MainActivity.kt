@@ -30,6 +30,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.btn_addBoard
 import kotlinx.android.synthetic.main.activity_map.*
 import kotlinx.android.synthetic.main.activity_register.*
+import kotlinx.android.synthetic.main.fragment_user.*
 
 private const val TAG_HOME = "home_fragment"
 private const val TAG_LIST = "list_fragment"
@@ -52,6 +53,14 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
             val intent = Intent(this, WritingActivity::class.java)
             startActivity(intent)
         }
+
+        //btn_modify 버튼 클릭 시 프로필 수정 화면 라우팅
+//        btn_modify.setOnClickListener {
+//            val intent = Intent(this, ModifyActivity::class.java)
+//            startActivity(intent)
+//        }
+//        btn_modify.visibility = View.INVISIBLE
+
 
         //bottom bar 설정
         setFragment(TAG_HOME, HomeFragment())
@@ -94,12 +103,14 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
         }
 
         if(user != null) {
+//            btn_modify.visibility = View.INVISIBLE
             fragTransaction.hide(user)
         }
 
         if(tag == TAG_HOME) {
             if(home != null) {
                 if(isPermitted()) {
+//                    btn_modify.visibility = View.INVISIBLE
                     btn_addBoard.visibility = View.VISIBLE
                     fragTransaction.show(home)
                 } else {
@@ -111,16 +122,19 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
         else if(tag == TAG_LIST) {
             if(list != null) {
                 btn_addBoard.visibility = View.INVISIBLE
+//                btn_modify.visibility = View.INVISIBLE
                 fragTransaction.show(list)
             }
         }
         else if(tag == TAG_MESSAGE) {
             if(message != null) {
                 btn_addBoard.visibility = View.INVISIBLE
+//                btn_modify.visibility = View.INVISIBLE
                 fragTransaction.show(message)
             }
         }
         else if(tag == TAG_USER) {
+//            btn_modify.visibility = View.VISIBLE
             if(user != null) {
                 btn_addBoard.visibility = View.INVISIBLE
                 fragTransaction.show(user)
