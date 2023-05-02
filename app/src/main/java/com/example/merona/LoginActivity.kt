@@ -8,6 +8,7 @@ import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_modify.*
 import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.android.synthetic.main.check_dialog.*
 import org.json.JSONObject
@@ -31,6 +32,11 @@ class LoginActivity : AppCompatActivity() {
                 Method.POST, url,
                 Response.Listener {
                     Log.d("로그인 성공", editTextEmailAddress.text.toString())
+                    var strResp = it.toString()
+                    val jsonObj: JSONObject = JSONObject(strResp)
+                    val accessToken = jsonObj.getString("accessToken")
+                    MyApplication.prefs.setString("accessToken", accessToken)
+                    MyApplication.prefs.setString("email", editTextEmailAddress.text.toString())
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)},
                 Response.ErrorListener {
