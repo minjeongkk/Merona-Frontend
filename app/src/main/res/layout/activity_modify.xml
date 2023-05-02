@@ -23,6 +23,13 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/backBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="   <"
+            android:textSize="20sp"/>
+
+        <TextView
             android:id="@+id/text_modify"
             android:layout_width="84dp"
             android:layout_height="31dp"
