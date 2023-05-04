@@ -2,10 +2,12 @@ package com.example.merona
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
 import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.android.synthetic.main.activity_writing.*
@@ -46,6 +48,10 @@ class UserFragment : Fragment() {
             val intent = Intent(getActivity(), ModifyActivity::class.java)
             startActivity(intent)
         }
+
+        Log.d("email 저장",MyApplication.prefs.getString("email","") )
+        val userEmail : TextView = view.findViewById(R.id.userEmail)
+        userEmail.text = MyApplication.prefs.getString("email","")
 
         return view
 
