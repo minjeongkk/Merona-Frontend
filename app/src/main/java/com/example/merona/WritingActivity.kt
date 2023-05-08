@@ -1,6 +1,8 @@
 package com.example.merona
 
 import android.annotation.SuppressLint
+import android.app.PendingIntent.getActivity
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -31,12 +33,14 @@ class WritingActivity : AppCompatActivity() {
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setHomeAsUpIndicator(R.drawable.left_arrow)
 
+
         //가입하기 버튼 클릭 시
         PostButton.setOnClickListener {
             val stringRequest: StringRequest = object : StringRequest(
                 Method.POST, writingUrl,
                 Response.Listener {
                     Log.d("게시글 작성 성공", inputTitle.text.toString())
+                    onBackPressed()
                 },
                 Response.ErrorListener {
                     Log.d("error",it.toString())
