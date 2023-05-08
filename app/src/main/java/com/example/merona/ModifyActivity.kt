@@ -8,6 +8,7 @@ import android.widget.Button
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.FragmentManager
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
@@ -111,7 +112,11 @@ class ModifyActivity : AppCompatActivity() {
                     Response.Listener {
                         Log.d("수정 완료", ModifyEmail.text.toString())
                         MyApplication.prefs.setString("email",ModifyEmail.text.toString())
-                        onBackPressed()},
+                        onBackPressed()
+                        val broadcaster = LocalBroadcastManager.getInstance(this)
+                        val intent = Intent("profile")
+                        broadcaster.sendBroadcast(intent)
+                                      },
                     Response.ErrorListener {
                         Log.d("수정 실패", it.toString()) }) {
 

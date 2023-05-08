@@ -16,6 +16,8 @@ import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.example.merona.databinding.ActivityMainBinding
 import com.google.android.gms.location.*
 import com.naver.maps.geometry.LatLng
@@ -138,6 +140,9 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
             if(user != null) {
                 btn_addBoard.visibility = View.INVISIBLE
                 fragTransaction.show(user)
+                val broadcaster = LocalBroadcastManager.getInstance(this)
+                val intent = Intent("userBoard")
+                broadcaster.sendBroadcast(intent)
             }
         }
 

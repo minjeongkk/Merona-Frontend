@@ -38,18 +38,25 @@
     <TextView
         android:id="@+id/text_writing"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:text="내가 쓴 글"
         android:textSize="20dp"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="200dp" />
 
-    <View
-        android:id="@+id/linear"
-        android:layout_width="380dp"
-        android:layout_height="0.5dp"
-        android:background="#000000"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="240dp"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="240dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_user_board"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/item_mypage_recyclerview"/>
+    </ScrollView>
 
 </FrameLayout>
