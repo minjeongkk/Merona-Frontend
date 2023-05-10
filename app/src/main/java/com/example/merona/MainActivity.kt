@@ -126,6 +126,9 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
                 btn_addBoard.visibility = View.INVISIBLE
 //                btn_modify.visibility = View.INVISIBLE
                 fragTransaction.show(list)
+                val broadcaster = LocalBroadcastManager.getInstance(this)
+                val intent = Intent("Board")
+                broadcaster.sendBroadcast(intent)
             }
         }
         else if(tag == TAG_MESSAGE) {
