@@ -23,6 +23,7 @@
             android:exported="false" />
         <activity
             android:name=".WritingActivity"
+            android:parentActivityName=".HomeFragment"
             android:exported="false" />
         <activity
             android:name=".RegisterActivity2"

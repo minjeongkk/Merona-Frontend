@@ -50,6 +50,7 @@ class WritingActivity : AppCompatActivity() {
                     val json = JSONObject()
                     json.put("title", ""+inputTitle.text.toString())
                     json.put("contents", ""+inputContents.text.toString())
+                    json.put("streetAddress",""+address.text.toString())
                     return json.toString().toByteArray()
                 }
 
